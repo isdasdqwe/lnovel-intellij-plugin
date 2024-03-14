@@ -1,0 +1,32 @@
+<idea-plugin>
+
+    <id>com.liang.novel.lnovel-intellij-plugin</id>
+
+    <name>Lnovel</name>
+
+    <vendor email="git@liangyuhang.com" url="https://www.wjlyh.com">liangyuhang</vendor>
+
+    <description><![CDATA[
+      暂无
+  ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+
+        <postStartupActivity implementation="com.liang.novel.plugin.PluginStarter"/>
+
+        <notificationGroup id="MyNotificationGroup" displayType="BALLOON"/>
+
+        <applicationConfigurable id="NovelSetting" instance="com.liang.novel.plugin.settings.NovelSetting" displayName="小说设置"/>
+
+        <applicationService serviceImplementation="com.liang.novel.plugin.state.NovelState"/>
+
+        <toolWindow id="lnovel"
+                    factoryClass="com.liang.novel.plugin.factory.ReadToolWindow"
+                    anchor="bottom"
+                    icon="/icons/book_13.svg"/>
+
+    </extensions>
+
+</idea-plugin>

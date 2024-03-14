@@ -1,0 +1,22 @@
+### java template
+.svn/
+.idea/
+.settings/
+target/
+out/
+.classpath
+.project
+.mymetadata
+.DS_Store
+rebel.xml
+*.ipr
+*.iws
+*.iml
+
+
+DependencyManager/target/
+
+.gradle
+.idea
+.qodana
+build
