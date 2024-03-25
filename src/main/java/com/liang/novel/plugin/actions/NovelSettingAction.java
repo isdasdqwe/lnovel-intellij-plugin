@@ -23,6 +23,6 @@ public class NovelSettingAction extends DumbAwareAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
         Project project = e.getProject();
-        ShowSettingsUtil.getInstance().showSettingsDialog(project, "小说设置");
+        ShowSettingsUtil.getInstance().showSettingsDialog(project, "lnovel");
     }
 }

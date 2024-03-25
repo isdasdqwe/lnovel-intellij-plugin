@@ -7,6 +7,7 @@ import com.intellij.ui.components.JBList;
 import com.intellij.ui.components.JBScrollPane;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.liang.novel.plugin.constants.FontConstants;
 import com.liang.novel.plugin.icons.Icons;
 import com.liang.novel.plugin.pojo.Book;
 import com.liang.novel.plugin.pojo.Chapter;
@@ -221,7 +222,7 @@ public class ReadUI {
         if (font != null) {
             this.font = font;
         } else {
-            this.font = new Font("Monospaced", Font.PLAIN, 12); //重设为平台字体
+            this.font = new Font(FontConstants.DEFAULT_FONT_TYPE, Font.PLAIN, FontConstants.DEFAULT_FONT_SIZE); //重设为平台字体
         }
         if (StringUtils.isNotEmpty(contentTextArea.getText())) {
             contentTextArea.setFont(this.font);

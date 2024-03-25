@@ -9,6 +9,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.util.ui.components.BorderLayoutPanel;
 import com.liang.novel.plugin.actions.*;
+import com.liang.novel.plugin.constants.FontConstants;
 import com.liang.novel.plugin.pojo.Book;
 import com.liang.novel.plugin.state.NovelState;
 
@@ -39,8 +40,13 @@ public class ToolWindowUI {
 
     private void initContentPanel() {
         this.novelState = NovelState.getInstance();
-        this.fontType = novelState.getFontType();
-        this.fontSize = novelState.getFontSize();
+        if (novelState.getUseCustomFont()) {
+            this.fontType = novelState.getFontType();
+            this.fontSize = novelState.getFontSize();
+        } else {
+            this.fontType = FontConstants.DEFAULT_FONT_TYPE;
+            this.fontSize = FontConstants.DEFAULT_FONT_SIZE;
+        }
         this.bookList = novelState.getBookList();
         this.currentReadBookIndex = novelState.getCurrentReadBookIndex();
         this.book = currentReadBookIndex != null ? bookList.get(currentReadBookIndex) : null;
@@ -58,7 +64,7 @@ public class ToolWindowUI {
     private Component getReadUIPanel() {
         if (bookList.isEmpty()) {
             ActionLink link = new ActionLink("请添加图书", e -> {
-                ShowSettingsUtil.getInstance().showSettingsDialog(project, "小说设置");
+                ShowSettingsUtil.getInstance().showSettingsDialog(project, "lnovel");
             });
             return getCenteredComponent(link);
         } else if (currentReadBookIndex == null) {
@@ -126,6 +132,14 @@ public class ToolWindowUI {
 
     public Book getCurrentReadBook() {
         return book;
+    }
+
+    public String getFontType() {
+        return fontType;
+    }
+
+    public Integer getFontSize() {
+        return fontSize;
     }
 
     {

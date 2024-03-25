@@ -5,6 +5,7 @@ import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
+import com.liang.novel.plugin.constants.FontConstants;
 import com.liang.novel.plugin.pojo.Book;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -42,8 +43,8 @@ public class NovelState implements PersistentStateComponent<NovelState> {
 
     public NovelState() {
         this.useCustomFont = false;
-        this.fontType = "Monospaced";
-        this.fontSize = 12;
+        this.fontType = FontConstants.DEFAULT_FONT_TYPE;
+        this.fontSize = FontConstants.DEFAULT_FONT_SIZE;
         this.currentReadBookIndex = null;
         this.bookList = new ArrayList<>();
     }

@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.liang.novel"
-version = "1.0-SNAPSHOT"
+version = "1.0.5"
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("232.*")
+        untilBuild.set("")
     }
 
     signPlugin {

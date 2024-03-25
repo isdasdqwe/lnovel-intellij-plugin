@@ -7,6 +7,7 @@ import com.intellij.openapi.actionSystem.Presentation;
 import com.intellij.openapi.project.DumbAwareAction;
 import com.intellij.openapi.wm.ToolWindow;
 import com.intellij.openapi.wm.ToolWindowManager;
+import com.liang.novel.plugin.constants.FontConstants;
 import com.liang.novel.plugin.pojo.Book;
 import com.liang.novel.plugin.state.NovelState;
 import com.liang.novel.plugin.ui.ToolWindowUI;
@@ -27,7 +28,7 @@ public class RefreshToolWindowUIAction extends DumbAwareAction {
 
     @Override
     public @NotNull ActionUpdateThread getActionUpdateThread() {
-        return ActionUpdateThread.BGT;
+        return ActionUpdateThread.EDT;
     }
 
     @Override
@@ -47,24 +48,33 @@ public class RefreshToolWindowUIAction extends DumbAwareAction {
     @Override
     public void update(@NotNull AnActionEvent e) {
         Presentation presentation = e.getPresentation();
-        presentation.setEnabled(false);
+        presentation.setEnabled(isRefresh());
+    }
 
+    private Boolean isRefresh() {
         Book toolWindowUIBook = toolWindowUI.getCurrentReadBook();
-        Book novelStatebook = NovelState.getInstance().getCurrentReadBook();
+        NovelState instance = NovelState.getInstance();
+        Book novelStatebook = instance.getCurrentReadBook();
 
-        if (toolWindowUIBook != null) {
-            if (novelStatebook != null) {
-                if (!toolWindowUIBook.getUrl().equals(novelStatebook.getUrl())) {
-                    presentation.setEnabled(true);
-                }
-            } else {
-                presentation.setEnabled(true);
-            }
+        //编辑书籍url时
+        if (toolWindowUIBook != null && novelStatebook != null && !toolWindowUIBook.getUrl().equals(novelStatebook.getUrl())) {
+            return true;
+        }
+        //删除书籍时
+        if (toolWindowUIBook != null && novelStatebook == null) {
+            return true;
+        }
+        //添加书籍时
+        if (toolWindowUIBook == null && novelStatebook != null) {
+            return true;
+        }
+        //字体变动时
+        if (instance.getUseCustomFont()) {
+            return !toolWindowUI.getFontType().equals(instance.getFontType()) || !toolWindowUI.getFontSize().equals(instance.getFontSize());
         } else {
-            if (novelStatebook != null) {
-                presentation.setEnabled(true);
-            }
+            return !toolWindowUI.getFontType().equals(FontConstants.DEFAULT_FONT_TYPE) || !toolWindowUI.getFontSize().equals(FontConstants.DEFAULT_FONT_SIZE);
         }
     }
+
 
 }

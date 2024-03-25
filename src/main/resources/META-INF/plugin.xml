@@ -7,7 +7,13 @@
     <vendor email="git@liangyuhang.com" url="https://www.wjlyh.com">liangyuhang</vendor>
 
     <description><![CDATA[
-      暂无
+        It allows you to read novels on your local hard drive, it acts like a bookmark to remember your progress, so you can continue reading next time, and provides page-turning capabilities.
+        Product Description:
+        <ul>
+          <li>1.准备一本电子书txt</li>
+          <li>2.在设置中搜索lnovel，设置基本信息</li>
+          <li>3.你可以在IDE中的lnovel工具窗口阅读电子书</li>
+        </ul>
   ]]></description>
 
     <depends>com.intellij.modules.platform</depends>
@@ -18,7 +24,7 @@
 
         <notificationGroup id="MyNotificationGroup" displayType="BALLOON"/>
 
-        <applicationConfigurable id="NovelSetting" instance="com.liang.novel.plugin.settings.NovelSetting" displayName="小说设置"/>
+        <applicationConfigurable id="NovelSetting" instance="com.liang.novel.plugin.settings.NovelSetting" displayName="lnovel"/>
 
         <applicationService serviceImplementation="com.liang.novel.plugin.state.NovelState"/>
 

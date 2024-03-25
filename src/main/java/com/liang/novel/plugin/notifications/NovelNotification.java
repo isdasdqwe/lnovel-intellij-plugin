@@ -26,7 +26,7 @@ public class NovelNotification {
     }
 
     private static void addNotificationActions(Notification notification, Project project) {
-        notification.addAction(NotificationAction.createSimple("Setting", () -> ShowSettingsUtil.getInstance().showSettingsDialog(project, "小说设置")));
+        notification.addAction(NotificationAction.createSimple("Setting", () -> ShowSettingsUtil.getInstance().showSettingsDialog(project, "lnovel")));
         notification.addAction(NotificationAction.createSimple("Git", () -> BrowserUtil.browse(GIT_LINK)));
     }
 
